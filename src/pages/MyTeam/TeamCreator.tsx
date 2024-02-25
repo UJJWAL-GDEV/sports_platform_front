@@ -128,115 +128,107 @@ function TeamForm({ onClose, onCreate }: TeamFormProp) {
     if (!teamGender) setGenderError(true)
     if (!teamName || !teamGender || !selectedSportId || !profilePicPath || !bannerPicPath) return
 
-    fetch(
-      // "http://127.0.0.1:5000/createTeam"
-    , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-            token: window.localStorage.getItem("token"),
-            name: teamName,
-            description: teamDescription,
-            members: members,
-            gender: teamGender,
-            sportsTypeId: selectedSportId,
-            profilePic: profilePicPath,
-            profileBanner: bannerPicPath,
-        }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        if (data.data == "token expired") {
-            window.localStorage.clear();
-            window.location.href = "../../login";
-        }
-        else {
-          if (data.status == "ok") {
-            window.location.href = "../../team/index?id=" + data.data.team;
-          }
-        }
-    });
+    // fetch("http://127.0.0.1:5000/createTeam", {
+    //     method: "POST",
+    //     crossDomain: true,
+    //     headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //     },
+    //     body: JSON.stringify({
+    //         token: window.localStorage.getItem("token"),
+    //         name: teamName,
+    //         description: teamDescription,
+    //         members: members,
+    //         gender: teamGender,
+    //         sportsTypeId: selectedSportId,
+    //         profilePic: profilePicPath,
+    //         profileBanner: bannerPicPath,
+    //     }),
+    // })
+    // .then((res) => res.json())
+    // .then((data) => {
+    //     if (data.data == "token expired") {
+    //         window.localStorage.clear();
+    //         window.location.href = "../../login";
+    //     }
+    //     else {
+    //       if (data.status == "ok") {
+    //         window.location.href = "../../team/index?id=" + data.data.team;
+    //       }
+    //     }
+    // });
   }
 
-  useEffect(() => {
-      fetch(
-        // "http://127.0.0.1:5000/getUserData"
-      , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          token: window.localStorage.getItem("token"),
-        }),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.data.userType == "Admin") {
-          setAdmin(true);
-        }
+  // useEffect(() => {
+  //     fetch("http://127.0.0.1:5000/getUserData", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //       },
+  //       body: JSON.stringify({
+  //         token: window.localStorage.getItem("token"),
+  //       }),
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.data.userType == "Admin") {
+  //         setAdmin(true);
+  //       }
 
-        setUserData(data.data);
+  //       setUserData(data.data);
         
-        if (data.data == "token expired") {
-          window.localStorage.clear();
-          window.location.href = "./login";
-        }
-      });
+  //       if (data.data == "token expired") {
+  //         window.localStorage.clear();
+  //         window.location.href = "./login";
+  //       }
+  //     });
 
-      // Get the list of sports that exist in the database
-      fetch(
-        // "http://127.0.0.1:5000/getSports"
-      , {
-          method: "GET",
-          crossDomain: true,
-          headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-          }
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          setSportsData(data.data);
+  //     // Get the list of sports that exist in the database
+  //     fetch("http://127.0.0.1:5000/getSports", {
+  //         method: "GET",
+  //         crossDomain: true,
+  //         headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //         }
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //         setSportsData(data.data);
 
-          setLoaded(true);
-      }
-      );
+  //         setLoaded(true);
+  //     }
+  //     );
 
-      fetch(
-        // "http://127.0.0.1:5000/getFriends"
-      , {
-          method: "POST",
-          crossDomain: true,
-          headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-          },
-          body: JSON.stringify({
-          token: window.localStorage.getItem("token"),
-        }),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        setAllFriends(data.data);
-        setShowFriends(data.data)
+  //     fetch("http://127.0.0.1:5000/getFriends", {
+  //         method: "POST",
+  //         crossDomain: true,
+  //         headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //         },
+  //         body: JSON.stringify({
+  //         token: window.localStorage.getItem("token"),
+  //       }),
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setAllFriends(data.data);
+  //       setShowFriends(data.data)
         
-        if (data.data == "token expired") {
-          window.localStorage.clear();
-          window.location.href = "./login";
-        }
-      });
-  }, []);
+  //       if (data.data == "token expired") {
+  //         window.localStorage.clear();
+  //         window.location.href = "./login";
+  //       }
+  //     });
+  // }, []);
 
   useEffect(() => {
     if (teamName) setTeamNameError(false)

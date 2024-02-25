@@ -19,27 +19,25 @@ import React, { Component, useEffect, useState } from "react";
 import { set } from "date-fns";
 
 function ProfileBox({userData, own, friendStatus} : any) {
-  const sendFriendRequest = (friendId: string) => {
-    fetch(
-      //"http://127.0.0.1:5000/sendFriendRequest"
-    , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-        friendId
-        }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
+  // const sendFriendRequest = (friendId: string) => {
+  //   fetch("http://127.0.0.1:5000/sendFriendRequest", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //       },
+  //       body: JSON.stringify({
+  //       token: window.localStorage.getItem("token"),
+  //       friendId
+  //       }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
         
-    });
-  }
+  //   });
+  // }
 
   const goToSetting = () => {
     window.location.href = "/settings"
@@ -108,42 +106,38 @@ function Filters(props: any) {
     setSearchKey("")
   }
 
-  useEffect(() => {
-    fetch(
-      // "http://127.0.0.1:5000/getTeams"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-      token: window.localStorage.getItem("token"),
-      }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      setTeams(data.data);
-    });
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:5000/getTeams", {
+  //     method: "POST",
+  //     crossDomain: true,
+  //     headers: {
+  //     "Content-Type": "application/json",
+  //     Accept: "application/json",
+  //     "Access-Control-Allow-Origin": "*",
+  //     },
+  //     body: JSON.stringify({
+  //     token: window.localStorage.getItem("token"),
+  //     }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setTeams(data.data);
+  //   });
 
-    fetch(
-      // "http://127.0.0.1:5000/getSports"
-    , {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
-      }
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      setSports(data.data);
-    });
-  }, [])
+  //   fetch("http://127.0.0.1:5000/getSports", {
+  //     method: "GET",
+  //     crossDomain: true,
+  //     headers: {
+  //     "Content-Type": "application/json",
+  //     Accept: "application/json",
+  //     "Access-Control-Allow-Origin": "*",
+  //     }
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setSports(data.data);
+  //   });
+  // }, [])
 
   return (
     <section className='mt-12 flex flex-wrap items-center gap-y-4'>
@@ -340,30 +334,29 @@ export function MyPlaymate() {
 
   useEffect(() => {
     const id = window.location.href.split("id=")[1]
-    let url = "http://127.0.0.1:5000/getUserData"
-    if (id) {
-      url += `/${id}`
+    let url = ""
+    // "http://127.0.0.1:5000/getUserData"
+    // if (id) {
+    //   url += `/${id}`
 
-      fetch(
-        // "http://127.0.0.1:5000/getFriendStatus"
-      , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          token: window.localStorage.getItem("token"),
-          friendId: id,
-        }),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.data === "Accepted") setFriendStatus(true)
-      });
-    } 
+    //   fetch("http://127.0.0.1:5000/getFriendStatus", {
+    //     method: "POST",
+    //     crossDomain: true,
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Accept: "application/json",
+    //       "Access-Control-Allow-Origin": "*",
+    //     },
+    //     body: JSON.stringify({
+    //       token: window.localStorage.getItem("token"),
+    //       friendId: id,
+    //     }),
+    //   })
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     if (data.data === "Accepted") setFriendStatus(true)
+    //   });
+    // } 
 
     fetch(url, {
       method: "POST",
@@ -395,32 +388,30 @@ export function MyPlaymate() {
     });
   }, []);
 
-  useEffect(() => {
-    if(!userData) return;
-    console.log("here", userData)
-    fetch(
-      // "http://127.0.0.1:5000/getEvents"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-        userId: userData.id,
-        status: "Accepted"
-      }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setEvents(data.data);
-        setShowedEvents(data.data);
-        setLoaded(true);
-    });
-  }, [userData]);
+  // useEffect(() => {
+  //   if(!userData) return;
+  //   console.log("here", userData)
+  //   fetch("http://127.0.0.1:5000/getEvents", {
+  //     method: "POST",
+  //     crossDomain: true,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //     },
+  //     body: JSON.stringify({
+  //       token: window.localStorage.getItem("token"),
+  //       userId: userData.id,
+  //       status: "Accepted"
+  //     }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setEvents(data.data);
+  //       setShowedEvents(data.data);
+  //       setLoaded(true);
+  //   });
+  // }, [userData]);
 
   useEffect(() => {
     console.log(selectedTeam, selectedSport, selectedDate, searchKey)

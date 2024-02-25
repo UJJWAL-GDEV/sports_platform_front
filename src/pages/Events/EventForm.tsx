@@ -70,29 +70,27 @@ export function EventForm({
     if (!eventInfo.numPlayers) setNumPlayersError(true)
 
     if (!eventInfo.sportId || !eventInfo.teamId || !eventInfo.name || !eventInfo.date || !eventInfo.startTime || !eventInfo.endTime || !eventInfo.location || !eventInfo.cost || !eventInfo.numPlayers) return
-    fetch(
-      // "http://127.0.0.1:5000/createEvent"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        ...eventInfo,
-        token: window.localStorage.getItem("token"),
-      }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      setConfirmation(true)
-      if (data.data == "token expired") {
-        window.localStorage.clear();
-        window.location.href = "./login";
-      }
-    });
+    // fetch("http://127.0.0.1:5000/createEvent", {
+    //   method: "POST",
+    //   crossDomain: true,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //   },
+    //   body: JSON.stringify({
+    //     ...eventInfo,
+    //     token: window.localStorage.getItem("token"),
+    //   }),
+    // })
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   setConfirmation(true)
+    //   if (data.data == "token expired") {
+    //     window.localStorage.clear();
+    //     window.location.href = "./login";
+    //   }
+    // });
 
   }
 

@@ -55,23 +55,21 @@ function EventFilters(props: any) {
     setSelectedPayment(null)
   }
 
-  useEffect(() => {
-    fetch(
-      // "http://127.0.0.1:5000/getSports"
-    , {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      "Access-Control-Allow-Origin": "*",
-      }
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      setSports(data.data);
-    });
-  }, [])
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:5000/getSports", {
+  //     method: "GET",
+  //     crossDomain: true,
+  //     headers: {
+  //     "Content-Type": "application/json",
+  //     Accept: "application/json",
+  //     "Access-Control-Allow-Origin": "*",
+  //     }
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setSports(data.data);
+  //   });
+  // }, [])
   // <div className='mt-7 hidden flex-wrap items-center gap-x-4 gap-y-5 md:flex'>
   return (
     <div
@@ -185,85 +183,79 @@ export function Events() {
 
   const [admin, setAdmin] = useState(false);
 
-  useEffect(() => {
-      fetch(
-        //"http://127.0.0.1:5000/getUserData"
-      , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-          body: JSON.stringify({
-          token: window.localStorage.getItem("token"),
-        }),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.data.userType == "Admin") {
-            setAdmin(true);
-        }
+  // useEffect(() => {
+  //     fetch("http://127.0.0.1:5000/getUserData", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //       },
+  //         body: JSON.stringify({
+  //         token: window.localStorage.getItem("token"),
+  //       }),
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.data.userType == "Admin") {
+  //           setAdmin(true);
+  //       }
 
-        setUserData(data.data);
+  //       setUserData(data.data);
 
-        if (data.data == "token expired") {
-          if (window.location.pathname !== "/login") {
-            window.localStorage.clear();
-            window.location.href = "../../login";
-          }
-        }
-      });
+  //       if (data.data == "token expired") {
+  //         if (window.location.pathname !== "/login") {
+  //           window.localStorage.clear();
+  //           window.location.href = "../../login";
+  //         }
+  //       }
+  //     });
 
-  }, []);
+  // }, []);
 
-  useEffect(() => {
-    if(!userData) return;
+  // useEffect(() => {
+  //   if(!userData) return;
 
-    fetch(
-      // "http://127.0.0.1:5000/getEvents"
-    , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          token: window.localStorage.getItem("token"),
-          status: "Pending Invite"
-        }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setAllEvents(data.data);
-        setLoaded(true);
-    });
+  //   fetch("http://127.0.0.1:5000/getEvents", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //       },
+  //       body: JSON.stringify({
+  //         token: window.localStorage.getItem("token"),
+  //         status: "Pending Invite"
+  //       }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setAllEvents(data.data);
+  //       setLoaded(true);
+  //   });
 
-    fetch(
-      // "http://127.0.0.1:5000/getEvents"
-    , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          token: window.localStorage.getItem("token"),
-          status: "Accepted"
-        }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setMyEvents(data.data);
-        setShowEvents(data.data)
-        setLoaded(true);
-    });
-  }, [userData]);
+  //   fetch("http://127.0.0.1:5000/getEvents", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //       },
+  //       body: JSON.stringify({
+  //         token: window.localStorage.getItem("token"),
+  //         status: "Accepted"
+  //       }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setMyEvents(data.data);
+  //       setShowEvents(data.data)
+  //       setLoaded(true);
+  //   });
+  // }, [userData]);
 
   useEffect(() => {
     let newEvents = [...myEvents];

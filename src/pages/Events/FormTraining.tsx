@@ -67,48 +67,44 @@ export function FormTraining(props: any) {
     setLocationList(placePredictions)
   }, [searchKey])
 
-  useEffect(() => {
-    fetch(
-      // "http://127.0.0.1:5000/getFriends"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "  *",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-      }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      setAllFriends(data.data);
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:5000/getFriends", {
+  //     method: "POST",
+  //     crossDomain: true,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "  *",
+  //     },
+  //     body: JSON.stringify({
+  //       token: window.localStorage.getItem("token"),
+  //     }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setAllFriends(data.data);
       
-      if (data.data == "token expired") {
-        window.localStorage.clear();
-        window.location.href = "./login";
-      }
-    });
+  //     if (data.data == "token expired") {
+  //       window.localStorage.clear();
+  //       window.location.href = "./login";
+  //     }
+  //   });
 
-    fetch(
-      // "http://127.0.0.1:5000/getSports"
-    , {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      }
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setSportsData(data.data);
-      }
-    );
-  }, []);
+  //   fetch("http://127.0.0.1:5000/getSports", {
+  //     method: "GET",
+  //     crossDomain: true,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //     }
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setSportsData(data.data);
+  //     }
+  //   );
+  // }, []);
 
   const onSelectMember = (selected: boolean, userId: string) => {
     let newMembers

@@ -25,35 +25,33 @@ function AccountSettings({userData}: any) {
     if (!firstName || !lastName || !userName) return
     console.log(firstName, lastName, userName)
 
-    fetch(
-      // "http://127.0.0.1:5000/updateProfile"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-        fname: firstName,
-        lname: lastName,
-        email: userName,
-        profilePic: profilePicPath
-      }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.data == "token expired") {
-          window.localStorage.clear();
-          window.location.href = "../../login";
-      }
-      else {
-        if (data.status == "ok") {
-        }
-      }
-    });
+    // fetch("http://127.0.0.1:5000/updateProfile", {
+    //   method: "POST",
+    //   crossDomain: true,
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     Accept: "application/json",
+    //     "Access-Control-Allow-Origin": "*",
+    //   },
+    //   body: JSON.stringify({
+    //     token: window.localStorage.getItem("token"),
+    //     fname: firstName,
+    //     lname: lastName,
+    //     email: userName,
+    //     profilePic: profilePicPath
+    //   }),
+    // })
+    // .then((res) => res.json())
+    // .then((data) => {
+    //   if (data.data == "token expired") {
+    //       window.localStorage.clear();
+    //       window.location.href = "../../login";
+    //   }
+    //   else {
+    //     if (data.status == "ok") {
+    //     }
+    //   }
+    // });
   }
 
   const saveProfilePic = async (e) => {
@@ -252,34 +250,32 @@ export function Settings() {
   const [popupMessage, setPopupMessage] = useState("");
   const [popupVisible, setPopupVisible] = useState(false);
 
-  useEffect(() => {
-    fetch(
-      // "http://127.0.0.1:5000/getUserData"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-      }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      setUserData(data.data);
+//   useEffect(() => {
+//     fetch("http://127.0.0.1:5000/getUserData", {
+//       method: "POST",
+//       crossDomain: true,
+//       headers: {
+//         "Content-Type": "application/json",
+//         Accept: "application/json",
+//         "Access-Control-Allow-Origin": "*",
+//       },
+//       body: JSON.stringify({
+//         token: window.localStorage.getItem("token"),
+//       }),
+//     })
+//     .then((res) => res.json())
+//     .then((data) => {
+//       setUserData(data.data);
       
-      if (data.data == "token expired") {
-        if (window.location.pathname !== "/login") {
-          window.localStorage.clear();
-          window.location.href = "../../login";
-        }
-      }
-    });
+//       if (data.data == "token expired") {
+//         if (window.location.pathname !== "/login") {
+//           window.localStorage.clear();
+//           window.location.href = "../../login";
+//         }
+//       }
+//     });
 
-}, []);
+// }, []);
 
   useEffect(() => {
     if(popupMessage != "" && popupMessage != undefined && popupMessage != null){
@@ -303,34 +299,32 @@ export function Settings() {
     }
 }, [popupMessage]);
 
-  function updatePassword() {
-    fetch(
-      // "http://127.0.0.1:5000/changePassword"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-        oldPassword,
-        newPassword,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status == "ok") {
-          window.localStorage.setItem("messageType", "success");
-          setPopupMessage(data.data);
-        } else {
-          window.localStorage.setItem("messageType", "danger");
-          setPopupMessage(data.error);
-        }
-      });
-  }
+  // function updatePassword() {
+  //   fetch("http://127.0.0.1:5000/changePassword", {
+  //     method: "POST",
+  //     crossDomain: true,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //     },
+  //     body: JSON.stringify({
+  //       token: window.localStorage.getItem("token"),
+  //       oldPassword,
+  //       newPassword,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.status == "ok") {
+  //         window.localStorage.setItem("messageType", "success");
+  //         setPopupMessage(data.data);
+  //       } else {
+  //         window.localStorage.setItem("messageType", "danger");
+  //         setPopupMessage(data.error);
+  //       }
+  //     });
+  // }
 
   return (
     <PageView title='Settings'>

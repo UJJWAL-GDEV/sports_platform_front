@@ -364,59 +364,55 @@ export function TeamIndex() {
       }
   }
 
-  useEffect(() => {
-      fetch(
-        // "http://127.0.0.1:5000/getUserData"
-      , {
-              method: "POST",
-              crossDomain: true,
-              headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              "Access-Control-Allow-Origin": "*",
-              },
-              body: JSON.stringify({
-              token: window.localStorage.getItem("token"),
-          }),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          if (data.data.userType == "Admin") {
-              setAdmin(true);
-          }
+  // useEffect(() => {
+  //     fetch("http://127.0.0.1:5000/getUserData", {
+  //             method: "POST",
+  //             crossDomain: true,
+  //             headers: {
+  //             "Content-Type": "application/json",
+  //             Accept: "application/json",
+  //             "Access-Control-Allow-Origin": "*",
+  //             },
+  //             body: JSON.stringify({
+  //             token: window.localStorage.getItem("token"),
+  //         }),
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //         if (data.data.userType == "Admin") {
+  //             setAdmin(true);
+  //         }
   
-          setUserData(data.data);
+  //         setUserData(data.data);
           
-          if (data.data == "token expired") {
-              window.localStorage.clear();
-              window.location.href = "../../../login";
-          }
+  //         if (data.data == "token expired") {
+  //             window.localStorage.clear();
+  //             window.location.href = "../../../login";
+  //         }
 
-      });
+  //     });
 
-      // Get the list of sports that exist in the database
-      fetch(
-        // "http://127.0.0.1:5000/getSports"
-      , {
-          method: "GET",
-          crossDomain: true,
-          headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-          }
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          setSportsData(data.data);
+  //     // Get the list of sports that exist in the database
+  //     fetch("http://127.0.0.1:5000/getSports", {
+  //         method: "GET",
+  //         crossDomain: true,
+  //         headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //         }
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //         setSportsData(data.data);
 
-          setSelectedSportId(data.data[0].id);
-      });
+  //         setSelectedSportId(data.data[0].id);
+  //     });
 
-      // Get the popup message from the local storage
-      setPopupMessage(window.localStorage.getItem("message"));
-      setPopupVisible(false);
-  }, []);
+  //     // Get the popup message from the local storage
+  //     setPopupMessage(window.localStorage.getItem("message"));
+  //     setPopupVisible(false);
+  // }, []);
 
   useEffect(() => {
       if(popupMessage != "" && popupMessage != undefined && popupMessage != null){
@@ -457,78 +453,74 @@ export function TeamIndex() {
   }, [selectedTeamId]);
 
   function updateTeamData() {
-      if(selectedTeamId != "") {
-          fetch(
-            // "http://127.0.0.1:5000/getTeamData/"
-          +selectedTeamId, {
-              method: "POST",
-              crossDomain: true,
-              headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              "Access-Control-Allow-Origin": "*",
-              },
-              body: JSON.stringify({
-              token: window.localStorage.getItem("token"),
-          }),
-          })
-          .then((res) => res.json())
-          .then((data) => {
-              setTeamData(data.data);
+      // if(selectedTeamId != "") {
+      //     fetch("http://127.0.0.1:5000/getTeamData/"+selectedTeamId, {
+      //         method: "POST",
+      //         crossDomain: true,
+      //         headers: {
+      //         "Content-Type": "application/json",
+      //         Accept: "application/json",
+      //         "Access-Control-Allow-Origin": "*",
+      //         },
+      //         body: JSON.stringify({
+      //         token: window.localStorage.getItem("token"),
+      //     }),
+      //     })
+      //     .then((res) => res.json())
+      //     .then((data) => {
+      //         setTeamData(data.data);
 
-              // Create the team invite link
-              // Get the current base url
-              var baseUrl = window.location.href;
+      //         // Create the team invite link
+      //         // Get the current base url
+      //         var baseUrl = window.location.href;
 
-              // Only get the base url without any page names
-              baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
-              baseUrl = baseUrl.replace("/Teams", "");
+      //         // Only get the base url without any page names
+      //         baseUrl = baseUrl.substring(0, baseUrl.lastIndexOf("/"));
+      //         baseUrl = baseUrl.replace("/Teams", "");
 
-              setTeamInviteLink(baseUrl + "/JoinTeam/" + data.data.id + "/" + data.data.inviteCode);
+      //         setTeamInviteLink(baseUrl + "/JoinTeam/" + data.data.id + "/" + data.data.inviteCode);
               
-              setLoaded(true);
+      //         setLoaded(true);
 
-              // Wait at least 500ms before setting the loadedTeamData to true
-              setTimeout(() => {
-                  setLoadedTeamData(true);
-              }, 500);
-          });
-      }
+      //         // Wait at least 500ms before setting the loadedTeamData to true
+      //         setTimeout(() => {
+      //             setLoadedTeamData(true);
+      //         }, 500);
+      //     });
+      // }
   }
 
   useEffect(() => {
       // Get the list of members of the team
-      if(selectedTeamId != "") {
-          fetch(
-            // "http://127.0.0.1:5000/getTeamMembers/"
-          , {
-              method: "POST",
-              crossDomain: true,
-              headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              "Access-Control-Allow-Origin": "*",
-              },
-              body: JSON.stringify({
-                  teamId: selectedTeamId,
-                  token: window.localStorage.getItem("token"),
-              }),
-          })
-          .then((res) => res.json())
-          .then((data) => {
-              setMembersData(data.data);
+      // if(selectedTeamId != "") {
+      //     fetch("http://127.0.0.1:5000/getTeamMembers/", {
+      //         method: "POST",
+      //         crossDomain: true,
+      //         headers: {
+      //         "Content-Type": "application/json",
+      //         Accept: "application/json",
+      //         "Access-Control-Allow-Origin": "*",
+      //         },
+      //         body: JSON.stringify({
+      //             teamId: selectedTeamId,
+      //             token: window.localStorage.getItem("token"),
+      //         }),
+      //     })
+      //     .then((res) => res.json())
+      //     .then((data) => {
+      //         setMembersData(data.data);
 
-              // Check if the user is a admin of the team
-              let isAdmin = false;
-              for(var i = 0; i < data.data.length; i++) {
-                  if(data.data[i].id == userData._id && data.data[i].role == "Admin") {
-                      isAdmin = true;
-                  }
-              }
-              setTeamAdmin(isAdmin);
-          }
-          );
-      }
+      //         // Check if the user is a admin of the team
+      //         let isAdmin = false;
+      //         for(var i = 0; i < data.data.length; i++) {
+      //             if(data.data[i].id == userData._id && data.data[i].role == "Admin") {
+      //                 isAdmin = true;
+      //             }
+      //         }
+      //         setTeamAdmin(isAdmin);
+      //     }
+      //     );
+      // }
   }, [selectedTeamId]);
 
   return (

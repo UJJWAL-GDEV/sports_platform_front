@@ -67,69 +67,63 @@ export function FormTeam(props: any) {
     setLocationList(placePredictions)
   }, [searchKey])
 
-  useEffect(() => {
-    fetch(
-      // "http://127.0.0.1:5000/getFriends"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "  *",
-      },
-      body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-      }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-      setAllFriends(data.data);
-      setShowFriends(data.data)
+  // useEffect(() => {
+  //   fetch("http://127.0.0.1:5000/getFriends", {
+  //     method: "POST",
+  //     crossDomain: true,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "  *",
+  //     },
+  //     body: JSON.stringify({
+  //       token: window.localStorage.getItem("token"),
+  //     }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     setAllFriends(data.data);
+  //     setShowFriends(data.data)
       
-      if (data.data == "token expired") {
-        window.localStorage.clear();
-        window.location.href = "./login";
-      }
-    });
+  //     if (data.data == "token expired") {
+  //       window.localStorage.clear();
+  //       window.location.href = "./login";
+  //     }
+  //   });
 
-    fetch(
-      // "http://127.0.0.1:5000/getSports"
-    , {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      }
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setSportsData(data.data);
-      }
-    );
+  //   fetch("http://127.0.0.1:5000/getSports", {
+  //     method: "GET",
+  //     crossDomain: true,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //     }
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setSportsData(data.data);
+  //     }
+  //   );
 
-    fetch(
-      // "http://127.0.0.1:5000/getTeams"
-    , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-        }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setTeams(data.data);
-    }
-    );
-  }, []);
+  //   fetch("http://127.0.0.1:5000/getTeams", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //       },
+  //       body: JSON.stringify({
+  //       token: window.localStorage.getItem("token"),
+  //       }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setTeams(data.data);
+  //   }
+  //   );
+  // }, []);
 
   const onSelectMember = (selected: boolean, userId: string) => {
     let newMembers
@@ -409,67 +403,61 @@ export function ConfirmationView(p: {onClose:() => void, eventInfo: any}) {
   const [selectedTeam, setSelectedTeam] = useState("")
   const [members, setMembers] = useState([])
 
-  useEffect(() => {
-    let newMembers = []
-    for (let userId of p.eventInfo.members) {
-      fetch(
-        // "http://127.0.0.1:5000/getUserData/"
-       + userId, {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        }
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          newMembers.push(data.data)
-        }
-      );
-      if (newMembers.length > 4) break;
-    }
+  // useEffect(() => {
+  //   let newMembers = []
+  //   for (let userId of p.eventInfo.members) {
+  //     fetch("http://127.0.0.1:5000/getUserData/"+ userId, {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //       }
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //         newMembers.push(data.data)
+  //       }
+  //     );
+  //     if (newMembers.length > 4) break;
+  //   }
 
-    setMembers(newMembers)
+  //   setMembers(newMembers)
 
-    fetch(
-      // "http://127.0.0.1:5000/getSports"
-    , {
-      method: "GET",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      }
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setAllSports(data.data);
-      }
-    );
+  //   fetch("http://127.0.0.1:5000/getSports", {
+  //     method: "GET",
+  //     crossDomain: true,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //     }
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setAllSports(data.data);
+  //     }
+  //   );
 
-    fetch(
-      // "http://127.0.0.1:5000/getTeams"
-    , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-        }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setAllTeams(data.data);
-    }
-    );
-  }, []);
+  //   fetch("http://127.0.0.1:5000/getTeams", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //       },
+  //       body: JSON.stringify({
+  //       token: window.localStorage.getItem("token"),
+  //       }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setAllTeams(data.data);
+  //   }
+  //   );
+  // }, []);
 
   useEffect(() => {
     if ( allSports.length > 0 && allTeams.length > 0) {

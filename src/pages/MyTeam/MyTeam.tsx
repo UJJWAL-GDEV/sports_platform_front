@@ -111,88 +111,82 @@ export function MyTeam() {
 
   const [admin, setAdmin] = useState(false);
 
-  useEffect(() => {
-      fetch(
-        // "http://127.0.0.1:5000/getUserData"
-      , {
-          method: "POST",
-          crossDomain: true,
-          headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-          },
-          body: JSON.stringify({
-          token: window.localStorage.getItem("token"),
-          }),
-      })
-      .then((res) => res.json())
-      .then((data) => {
-          if (data.data.userType == "Admin") {
-              setAdmin(true);
-          }
+  // useEffect(() => {
+  //     fetch("http://127.0.0.1:5000/getUserData", {
+  //         method: "POST",
+  //         crossDomain: true,
+  //         headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //         },
+  //         body: JSON.stringify({
+  //         token: window.localStorage.getItem("token"),
+  //         }),
+  //     })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //         if (data.data.userType == "Admin") {
+  //             setAdmin(true);
+  //         }
   
-          setUserData(data.data);
+  //         setUserData(data.data);
 
-          if (data.data == "token expired") {
-            if (window.location.pathname !== "/login") {
-              window.localStorage.clear();
-              window.location.href = "../../login";
-            }
-          }
+  //         if (data.data == "token expired") {
+  //           if (window.location.pathname !== "/login") {
+  //             window.localStorage.clear();
+  //             window.location.href = "../../login";
+  //           }
+  //         }
 
-      });
+  //     });
 
-  }, []);
+  // }, []);
 
-  useEffect(() => {
-    if(!userData) return;
+  // useEffect(() => {
+  //   if(!userData) return;
 
-    fetch(
-      // "http://127.0.0.1:5000/getTeams"
-    , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-        token: window.localStorage.getItem("token"),
-        }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setTeams(data.data);
-        setShowTeams(data.data);
-        setLoaded(true);
-    }
-    );
+  //   fetch("http://127.0.0.1:5000/getTeams", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //       },
+  //       body: JSON.stringify({
+  //       token: window.localStorage.getItem("token"),
+  //       }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setTeams(data.data);
+  //       setShowTeams(data.data);
+  //       setLoaded(true);
+  //   }
+  //   );
 
-    fetch(
-      // "http://127.0.0.1:5000/getAllTeams"
-    , {
-        method: "POST",
-        crossDomain: true,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify({
-          token: window.localStorage.getItem("token"),
-        }),
-    })
-    .then((res) => res.json())
-    .then((data) => {
-        setAllTeams(data.data);
-        setShowAllTeams(data.data)
-        setLoaded(true);
-    }
-    );
+  //   fetch("http://127.0.0.1:5000/getAllTeams", {
+  //       method: "POST",
+  //       crossDomain: true,
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Accept: "application/json",
+  //         "Access-Control-Allow-Origin": "*",
+  //       },
+  //       body: JSON.stringify({
+  //         token: window.localStorage.getItem("token"),
+  //       }),
+  //   })
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //       setAllTeams(data.data);
+  //       setShowAllTeams(data.data)
+  //       setLoaded(true);
+  //   }
+  //   );
 
-  }, [userData]);
+  // }, [userData]);
 
   useEffect(() => {
     setSearchKey('')

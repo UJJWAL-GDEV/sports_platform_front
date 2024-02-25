@@ -118,68 +118,64 @@ export function LoginRegister() {
     }
   }, [email, password]);
 
-  function login() {
-    fetch(
-      // "http://127.0.0.1:5000/login-user"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status == "ok") {
-          window.localStorage.setItem("token", data.data);
-          window.localStorage.setItem("loggedIn", true);
+  // function login() {
+  //   fetch("http://127.0.0.1:5000/login-user", {
+  //     method: "POST",
+  //     crossDomain: true,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //     },
+  //     body: JSON.stringify({
+  //       email,
+  //       password,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.status == "ok") {
+  //         window.localStorage.setItem("token", data.data);
+  //         window.localStorage.setItem("loggedIn", true);
 
-          window.location.href = "./../..";
-        } else {
-          window.localStorage.setItem("messageType", "danger");
-          setPopupMessage(data.error);
-        }
-      });
-  }
+  //         window.location.href = "./../..";
+  //       } else {
+  //         window.localStorage.setItem("messageType", "danger");
+  //         setPopupMessage(data.error);
+  //       }
+  //     });
+  // }
 
-  function register() {
-    fetch(
-      // "http://127.0.0.1:5000/register"
-    , {
-      method: "POST",
-      crossDomain: true,
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify({
-        fname,
-        lname,
-        userType,
-        email,
-        password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status == "ok") {
-          window.localStorage.setItem("token", data.data);
-          window.localStorage.setItem("loggedIn", true);
+  // function register() {
+  //   fetch("http://127.0.0.1:5000/register", {
+  //     method: "POST",
+  //     crossDomain: true,
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //       Accept: "application/json",
+  //       "Access-Control-Allow-Origin": "*",
+  //     },
+  //     body: JSON.stringify({
+  //       fname,
+  //       lname,
+  //       userType,
+  //       email,
+  //       password,
+  //     }),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       if (data.status == "ok") {
+  //         window.localStorage.setItem("token", data.data);
+  //         window.localStorage.setItem("loggedIn", true);
 
-          window.location.href = "./../..";
-        } else {
-          window.localStorage.setItem("messageType", "danger");
-          setPopupMessage(data.error);
-        }
-      });
-  }
+  //         window.location.href = "./../..";
+  //       } else {
+  //         window.localStorage.setItem("messageType", "danger");
+  //         setPopupMessage(data.error);
+  //       }
+  //     });
+  // }
 
   return (
     <PageView title='Login'>

@@ -139,135 +139,127 @@ function NotificationList({notifications, setNotifications} : any) {
 
   }
 
-  function handleAcceptFriendRequest(id) {
+  // function handleAcceptFriendRequest(id) {
 
-      fetch(
-        // "http://127.0.0.1:5000/acceptFriendRequest"
-      , {
-              method: "POST",
-              crossDomain: true,
-              headers: {
-                  "Content-Type": "application/json",
-                  Accept: "application/json",
-                  "Access-Control-Allow-Origin": "*",
-              },
-              body: JSON.stringify({
-                  token: window.localStorage.getItem("token"),
-                  friendId: id,
-              }),
-          })
-          .then((res) => res.json())
-          .then((data) => {
-              if (data.data == "token expired") {
-                  window.localStorage.clear();
-                  window.location.href = "../../../login";
-              } else {
-                  // Remove the notification from the array
-                  let newNotifications = notifications.filter((notification) => {
-                      return notification.id != id;
-                  });
-                  setNotifications(newNotifications);
-              }
-          }
-      );
+  //     fetch("http://127.0.0.1:5000/acceptFriendRequest", {
+  //             method: "POST",
+  //             crossDomain: true,
+  //             headers: {
+  //                 "Content-Type": "application/json",
+  //                 Accept: "application/json",
+  //                 "Access-Control-Allow-Origin": "*",
+  //             },
+  //             body: JSON.stringify({
+  //                 token: window.localStorage.getItem("token"),
+  //                 friendId: id,
+  //             }),
+  //         })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //             if (data.data == "token expired") {
+  //                 window.localStorage.clear();
+  //                 window.location.href = "../../../login";
+  //             } else {
+  //                 // Remove the notification from the array
+  //                 let newNotifications = notifications.filter((notification) => {
+  //                     return notification.id != id;
+  //                 });
+  //                 setNotifications(newNotifications);
+  //             }
+  //         }
+  //     );
 
-  }
+  // }
 
-  function handleRejectFriendRequest(id) {
-      fetch(
-        // "http://127.0.0.1:5000/rejectFriendRequest"
-      , {
-              method: "POST",
-              crossDomain: true,
-              headers: {
-                  "Content-Type": "application/json",
-                  Accept: "application/json",
-                  "Access-Control-Allow-Origin": "*",
-              },
-              body: JSON.stringify({
-                  token: window.localStorage.getItem("token"),
-                  friendId: id,
-              }),
-          })
-          .then((res) => res.json())
-          .then((data) => {
-              if (data.data == "token expired") {
-                  window.localStorage.clear();
-                  window.location.href = "../../../login";
-              } else {
-                  // Remove the notification from the array
-                  let newNotifications = notifications.filter((notification) => {
-                      return notification.id != id;
-                  });
-                  setNotifications(newNotifications);
-              }
-          }
-      );
-  }
+  // function handleRejectFriendRequest(id) {
+  //     fetch("http://127.0.0.1:5000/rejectFriendRequest", {
+  //             method: "POST",
+  //             crossDomain: true,
+  //             headers: {
+  //                 "Content-Type": "application/json",
+  //                 Accept: "application/json",
+  //                 "Access-Control-Allow-Origin": "*",
+  //             },
+  //             body: JSON.stringify({
+  //                 token: window.localStorage.getItem("token"),
+  //                 friendId: id,
+  //             }),
+  //         })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //             if (data.data == "token expired") {
+  //                 window.localStorage.clear();
+  //                 window.location.href = "../../../login";
+  //             } else {
+  //                 // Remove the notification from the array
+  //                 let newNotifications = notifications.filter((notification) => {
+  //                     return notification.id != id;
+  //                 });
+  //                 setNotifications(newNotifications);
+  //             }
+  //         }
+  //     );
+  // }
 
-  function handleAcceptEventInvite(id) {
-      fetch(
-        // "http://127.0.0.1:5000/acceptEventInvite"
-      , {
-              method: "POST",
-              crossDomain: true,
-              headers: {
-                  "Content-Type": "application/json",
-                  Accept: "application/json",
-                  "Access-Control-Allow-Origin": "*",
-              },
-              body: JSON.stringify({
-                  token: window.localStorage.getItem("token"),
-                  eventId: id,
-              }),
-          })
-          .then((res) => res.json())
-          .then((data) => {
-              if (data.data == "token expired") {
-                  window.localStorage.clear();
-                  window.location.href = "../../../login";
-              } else {
-                  // Remove the notification from the array
-                  let newNotifications = notifications.filter((notification) => {
-                      return notification.id != id;
-                  });
-                  setNotifications(newNotifications);
-              }
-          }
-      );
-  }
+  // function handleAcceptEventInvite(id) {
+  //     fetch("http://127.0.0.1:5000/acceptEventInvite", {
+  //             method: "POST",
+  //             crossDomain: true,
+  //             headers: {
+  //                 "Content-Type": "application/json",
+  //                 Accept: "application/json",
+  //                 "Access-Control-Allow-Origin": "*",
+  //             },
+  //             body: JSON.stringify({
+  //                 token: window.localStorage.getItem("token"),
+  //                 eventId: id,
+  //             }),
+  //         })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //             if (data.data == "token expired") {
+  //                 window.localStorage.clear();
+  //                 window.location.href = "../../../login";
+  //             } else {
+  //                 // Remove the notification from the array
+  //                 let newNotifications = notifications.filter((notification) => {
+  //                     return notification.id != id;
+  //                 });
+  //                 setNotifications(newNotifications);
+  //             }
+  //         }
+  //     );
+  // }
 
-  function handleRejectEventInvite(id) {
-      fetch(
-        // "http://127.0.0.1:5000/rejectEventInvite"
-      , {
-              method: "POST",
-              crossDomain: true,
-              headers: {
-                  "Content-Type": "application/json",
-                  Accept: "application/json",
-                  "Access-Control-Allow-Origin": "*",
-              },
-              body: JSON.stringify({
-                  token: window.localStorage.getItem("token"),
-                  eventId: id,
-              }),
-          })
-          .then((res) => res.json())
-          .then((data) => {
-              if (data.data == "token expired") {
-                  window.localStorage.clear();
-                  window.location.href = "../../../login";
-              } else {
-                  // Remove the notification from the array
-                  let newNotifications = notifications.filter((notification) => {
-                      return notification.id != id;
-                  });
-                  setNotifications(newNotifications);
-              }
-          }
-      );
-  }
+  // function handleRejectEventInvite(id) {
+  //     fetch("http://127.0.0.1:5000/rejectEventInvite", {
+  //             method: "POST",
+  //             crossDomain: true,
+  //             headers: {
+  //                 "Content-Type": "application/json",
+  //                 Accept: "application/json",
+  //                 "Access-Control-Allow-Origin": "*",
+  //             },
+  //             body: JSON.stringify({
+  //                 token: window.localStorage.getItem("token"),
+  //                 eventId: id,
+  //             }),
+  //         })
+  //         .then((res) => res.json())
+  //         .then((data) => {
+  //             if (data.data == "token expired") {
+  //                 window.localStorage.clear();
+  //                 window.location.href = "../../../login";
+  //             } else {
+  //                 // Remove the notification from the array
+  //                 let newNotifications = notifications.filter((notification) => {
+  //                     return notification.id != id;
+  //                 });
+  //                 setNotifications(newNotifications);
+  //             }
+  //         }
+  //     );
+  // }
 
 
   return (
