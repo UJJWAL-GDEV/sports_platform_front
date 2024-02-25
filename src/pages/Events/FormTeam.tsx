@@ -68,7 +68,9 @@ export function FormTeam(props: any) {
   }, [searchKey])
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/getFriends", {
+    fetch(
+      // "http://127.0.0.1:5000/getFriends"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -91,7 +93,9 @@ export function FormTeam(props: any) {
       }
     });
 
-    fetch("http://127.0.0.1:5000/getSports", {
+    fetch(
+      // "http://127.0.0.1:5000/getSports"
+    , {
       method: "GET",
       crossDomain: true,
       headers: {
@@ -106,7 +110,9 @@ export function FormTeam(props: any) {
       }
     );
 
-    fetch("http://127.0.0.1:5000/getTeams", {
+    fetch(
+      // "http://127.0.0.1:5000/getTeams"
+    , {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -406,7 +412,9 @@ export function ConfirmationView(p: {onClose:() => void, eventInfo: any}) {
   useEffect(() => {
     let newMembers = []
     for (let userId of p.eventInfo.members) {
-      fetch("http://127.0.0.1:5000/getUserData/" + userId, {
+      fetch(
+        // "http://127.0.0.1:5000/getUserData/"
+       + userId, {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -425,7 +433,9 @@ export function ConfirmationView(p: {onClose:() => void, eventInfo: any}) {
 
     setMembers(newMembers)
 
-    fetch("http://127.0.0.1:5000/getSports", {
+    fetch(
+      // "http://127.0.0.1:5000/getSports"
+    , {
       method: "GET",
       crossDomain: true,
       headers: {
@@ -440,7 +450,9 @@ export function ConfirmationView(p: {onClose:() => void, eventInfo: any}) {
       }
     );
 
-    fetch("http://127.0.0.1:5000/getTeams", {
+    fetch(
+      // "http://127.0.0.1:5000/getTeams"
+    , {
         method: "POST",
         crossDomain: true,
         headers: {

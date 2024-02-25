@@ -365,7 +365,9 @@ export function TeamIndex() {
   }
 
   useEffect(() => {
-      fetch("http://127.0.0.1:5000/getUserData", {
+      fetch(
+        // "http://127.0.0.1:5000/getUserData"
+      , {
               method: "POST",
               crossDomain: true,
               headers: {
@@ -393,7 +395,9 @@ export function TeamIndex() {
       });
 
       // Get the list of sports that exist in the database
-      fetch("http://127.0.0.1:5000/getSports", {
+      fetch(
+        // "http://127.0.0.1:5000/getSports"
+      , {
           method: "GET",
           crossDomain: true,
           headers: {
@@ -454,7 +458,9 @@ export function TeamIndex() {
 
   function updateTeamData() {
       if(selectedTeamId != "") {
-          fetch("http://127.0.0.1:5000/getTeamData/"+selectedTeamId, {
+          fetch(
+            // "http://127.0.0.1:5000/getTeamData/"
+          +selectedTeamId, {
               method: "POST",
               crossDomain: true,
               headers: {
@@ -493,7 +499,9 @@ export function TeamIndex() {
   useEffect(() => {
       // Get the list of members of the team
       if(selectedTeamId != "") {
-          fetch("http://127.0.0.1:5000/getTeamMembers/", {
+          fetch(
+            // "http://127.0.0.1:5000/getTeamMembers/"
+          , {
               method: "POST",
               crossDomain: true,
               headers: {

@@ -102,7 +102,9 @@ export function Layout() {
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-      fetch("http://127.0.0.1:5000/getUserData", {
+      fetch(
+        // "http://127.0.0.1:5000/getUserData"
+      , {
           method: "POST",
           crossDomain: true,
           headers: {
@@ -136,7 +138,9 @@ export function Layout() {
   useEffect(() => {
     if(!userData) return;
 
-    fetch("http://127.0.0.1:5000/getEvents", {
+    fetch(
+      // "http://127.0.0.1:5000/getEvents"
+    , {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -161,7 +165,9 @@ export function Layout() {
   useEffect(() => {
     if(!events) return;
 
-    fetch("http://127.0.0.1:5000/getFriendRequests", {
+    fetch(
+      // "http://127.0.0.1:5000/getFriendRequests"
+    , {
         method: "POST",
         crossDomain: true,
         headers: {

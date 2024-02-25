@@ -68,7 +68,9 @@ export function FormTraining(props: any) {
   }, [searchKey])
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/getFriends", {
+    fetch(
+      // "http://127.0.0.1:5000/getFriends"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -90,7 +92,9 @@ export function FormTraining(props: any) {
       }
     });
 
-    fetch("http://127.0.0.1:5000/getSports", {
+    fetch(
+      // "http://127.0.0.1:5000/getSports"
+    , {
       method: "GET",
       crossDomain: true,
       headers: {

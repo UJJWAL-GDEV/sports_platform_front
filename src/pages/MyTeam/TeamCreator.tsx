@@ -128,7 +128,9 @@ function TeamForm({ onClose, onCreate }: TeamFormProp) {
     if (!teamGender) setGenderError(true)
     if (!teamName || !teamGender || !selectedSportId || !profilePicPath || !bannerPicPath) return
 
-    fetch("http://127.0.0.1:5000/createTeam", {
+    fetch(
+      // "http://127.0.0.1:5000/createTeam"
+    , {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -162,7 +164,9 @@ function TeamForm({ onClose, onCreate }: TeamFormProp) {
   }
 
   useEffect(() => {
-      fetch("http://127.0.0.1:5000/getUserData", {
+      fetch(
+        // "http://127.0.0.1:5000/getUserData"
+      , {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -189,7 +193,9 @@ function TeamForm({ onClose, onCreate }: TeamFormProp) {
       });
 
       // Get the list of sports that exist in the database
-      fetch("http://127.0.0.1:5000/getSports", {
+      fetch(
+        // "http://127.0.0.1:5000/getSports"
+      , {
           method: "GET",
           crossDomain: true,
           headers: {
@@ -206,7 +212,9 @@ function TeamForm({ onClose, onCreate }: TeamFormProp) {
       }
       );
 
-      fetch("http://127.0.0.1:5000/getFriends", {
+      fetch(
+        // "http://127.0.0.1:5000/getFriends"
+      , {
           method: "POST",
           crossDomain: true,
           headers: {

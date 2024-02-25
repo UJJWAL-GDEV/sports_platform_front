@@ -119,7 +119,9 @@ export function LoginRegister() {
   }, [email, password]);
 
   function login() {
-    fetch("http://127.0.0.1:5000/login-user", {
+    fetch(
+      // "http://127.0.0.1:5000/login-user"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -147,7 +149,9 @@ export function LoginRegister() {
   }
 
   function register() {
-    fetch("http://127.0.0.1:5000/register", {
+    fetch(
+      // "http://127.0.0.1:5000/register"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {

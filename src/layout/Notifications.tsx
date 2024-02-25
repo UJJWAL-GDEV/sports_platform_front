@@ -141,7 +141,9 @@ function NotificationList({notifications, setNotifications} : any) {
 
   function handleAcceptFriendRequest(id) {
 
-      fetch("http://127.0.0.1:5000/acceptFriendRequest", {
+      fetch(
+        // "http://127.0.0.1:5000/acceptFriendRequest"
+      , {
               method: "POST",
               crossDomain: true,
               headers: {
@@ -172,7 +174,9 @@ function NotificationList({notifications, setNotifications} : any) {
   }
 
   function handleRejectFriendRequest(id) {
-      fetch("http://127.0.0.1:5000/rejectFriendRequest", {
+      fetch(
+        // "http://127.0.0.1:5000/rejectFriendRequest"
+      , {
               method: "POST",
               crossDomain: true,
               headers: {
@@ -202,7 +206,9 @@ function NotificationList({notifications, setNotifications} : any) {
   }
 
   function handleAcceptEventInvite(id) {
-      fetch("http://127.0.0.1:5000/acceptEventInvite", {
+      fetch(
+        // "http://127.0.0.1:5000/acceptEventInvite"
+      , {
               method: "POST",
               crossDomain: true,
               headers: {
@@ -232,7 +238,9 @@ function NotificationList({notifications, setNotifications} : any) {
   }
 
   function handleRejectEventInvite(id) {
-      fetch("http://127.0.0.1:5000/rejectEventInvite", {
+      fetch(
+        // "http://127.0.0.1:5000/rejectEventInvite"
+      , {
               method: "POST",
               crossDomain: true,
               headers: {
