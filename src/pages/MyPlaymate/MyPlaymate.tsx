@@ -20,7 +20,9 @@ import { set } from "date-fns";
 
 function ProfileBox({userData, own, friendStatus} : any) {
   const sendFriendRequest = (friendId: string) => {
-    fetch("http://127.0.0.1:5000/sendFriendRequest", {
+    fetch(
+      //"http://127.0.0.1:5000/sendFriendRequest"
+    , {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -107,7 +109,9 @@ function Filters(props: any) {
   }
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/getTeams", {
+    fetch(
+      // "http://127.0.0.1:5000/getTeams"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -124,7 +128,9 @@ function Filters(props: any) {
       setTeams(data.data);
     });
 
-    fetch("http://127.0.0.1:5000/getSports", {
+    fetch(
+      // "http://127.0.0.1:5000/getSports"
+    , {
       method: "GET",
       crossDomain: true,
       headers: {
@@ -338,7 +344,9 @@ export function MyPlaymate() {
     if (id) {
       url += `/${id}`
 
-      fetch("http://127.0.0.1:5000/getFriendStatus", {
+      fetch(
+        // "http://127.0.0.1:5000/getFriendStatus"
+      , {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -390,7 +398,9 @@ export function MyPlaymate() {
   useEffect(() => {
     if(!userData) return;
     console.log("here", userData)
-    fetch("http://127.0.0.1:5000/getEvents", {
+    fetch(
+      // "http://127.0.0.1:5000/getEvents"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {

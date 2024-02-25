@@ -112,7 +112,9 @@ export function MyTeam() {
   const [admin, setAdmin] = useState(false);
 
   useEffect(() => {
-      fetch("http://127.0.0.1:5000/getUserData", {
+      fetch(
+        // "http://127.0.0.1:5000/getUserData"
+      , {
           method: "POST",
           crossDomain: true,
           headers: {
@@ -146,7 +148,9 @@ export function MyTeam() {
   useEffect(() => {
     if(!userData) return;
 
-    fetch("http://127.0.0.1:5000/getTeams", {
+    fetch(
+      // "http://127.0.0.1:5000/getTeams"
+    , {
         method: "POST",
         crossDomain: true,
         headers: {
@@ -166,7 +170,9 @@ export function MyTeam() {
     }
     );
 
-    fetch("http://127.0.0.1:5000/getAllTeams", {
+    fetch(
+      // "http://127.0.0.1:5000/getAllTeams"
+    , {
         method: "POST",
         crossDomain: true,
         headers: {

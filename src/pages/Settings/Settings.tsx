@@ -25,7 +25,9 @@ function AccountSettings({userData}: any) {
     if (!firstName || !lastName || !userName) return
     console.log(firstName, lastName, userName)
 
-    fetch("http://127.0.0.1:5000/updateProfile", {
+    fetch(
+      // "http://127.0.0.1:5000/updateProfile"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -251,7 +253,9 @@ export function Settings() {
   const [popupVisible, setPopupVisible] = useState(false);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:5000/getUserData", {
+    fetch(
+      // "http://127.0.0.1:5000/getUserData"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {
@@ -300,7 +304,9 @@ export function Settings() {
 }, [popupMessage]);
 
   function updatePassword() {
-    fetch("http://127.0.0.1:5000/changePassword", {
+    fetch(
+      // "http://127.0.0.1:5000/changePassword"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {

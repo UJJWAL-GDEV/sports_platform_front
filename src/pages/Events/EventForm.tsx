@@ -70,7 +70,9 @@ export function EventForm({
     if (!eventInfo.numPlayers) setNumPlayersError(true)
 
     if (!eventInfo.sportId || !eventInfo.teamId || !eventInfo.name || !eventInfo.date || !eventInfo.startTime || !eventInfo.endTime || !eventInfo.location || !eventInfo.cost || !eventInfo.numPlayers) return
-    fetch("http://127.0.0.1:5000/createEvent", {
+    fetch(
+      // "http://127.0.0.1:5000/createEvent"
+    , {
       method: "POST",
       crossDomain: true,
       headers: {
